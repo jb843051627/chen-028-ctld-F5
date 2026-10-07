@@ -37,16 +37,46 @@ public class TCtldTaskItem implements Serializable {
     @ApiModelProperty(value = "农时催办条目代号")
     private String itemNo;
 
+    /** 本行地块码（去重键前段，只读本行） */
+    @TableField("plot_code")
+    @ApiModelProperty(value = "本行地块码")
+    private String plotCode;
+
+    /** 本行事由名目（去重键后段，只读本行） */
+    @TableField("measure_name")
+    @ApiModelProperty(value = "本行事由名目")
+    private String measureName;
+
     /** 该发提醒那一一日（落库为 datetime） */
     @TableField("due_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty(value = "该发提醒那一一日（落库为 datetime）")
     private Date dueAt;
 
-    /** 至多许提前几日 */
+    /** 至多许提前几日（空着按不提前办；只数整日，法定节假日与县里停办日不计） */
     @TableField("amount")
     @ApiModelProperty(value = "至多许提前几日")
     private BigDecimal amount;
+
+    /** 本行主栽作物（话术四要件之二） */
+    @TableField("crop_name")
+    @ApiModelProperty(value = "本行主栽作物")
+    private String cropName;
+
+    /** 承办岗（话术四要件之四） */
+    @TableField("handler_post")
+    @ApiModelProperty(value = "承办岗")
+    private String handlerPost;
+
+    /** 本回实走渠道 SMS短信 INNER站内消息；发不成留空 */
+    @TableField("channel")
+    @ApiModelProperty(value = "本回实走渠道 SMS/INNER")
+    private String channel;
+
+    /** 本行失败原由（两条渠道都走不通那句，照原样落本格） */
+    @TableField("fail_reason")
+    @ApiModelProperty(value = "本行失败原由")
+    private String failReason;
 
     /** 事由与所对地块的记要 */
     @TableField("content")
@@ -106,6 +136,22 @@ public class TCtldTaskItem implements Serializable {
         this.itemNo = itemNo;
     }
 
+    public String getPlotCode() {
+        return plotCode;
+    }
+
+    public void setPlotCode(String plotCode) {
+        this.plotCode = plotCode;
+    }
+
+    public String getMeasureName() {
+        return measureName;
+    }
+
+    public void setMeasureName(String measureName) {
+        this.measureName = measureName;
+    }
+
     public Date getDueAt() {
         return dueAt;
     }
@@ -120,6 +166,38 @@ public class TCtldTaskItem implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
+    }
+
+    public String getHandlerPost() {
+        return handlerPost;
+    }
+
+    public void setHandlerPost(String handlerPost) {
+        this.handlerPost = handlerPost;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public String getFailReason() {
+        return failReason;
+    }
+
+    public void setFailReason(String failReason) {
+        this.failReason = failReason;
     }
 
     public String getContent() {
