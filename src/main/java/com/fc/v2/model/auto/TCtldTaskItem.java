@@ -37,6 +37,26 @@ public class TCtldTaskItem implements Serializable {
     @ApiModelProperty(value = "农时催办条目代号")
     private String itemNo;
 
+    /** 本行所对地块码（去重键前段，只读本行） */
+    @TableField("plot_no")
+    @ApiModelProperty(value = "本行所对地块码（去重键前段，只读本行）")
+    private String plotNo;
+
+    /** 事由名目/措施名目（去重键后段，只读本行） */
+    @TableField("measure_name")
+    @ApiModelProperty(value = "事由名目/措施名目（去重键后段，只读本行）")
+    private String measureName;
+
+    /** 主栽作物（话术四要件之一，取不着不代填） */
+    @TableField("main_crop")
+    @ApiModelProperty(value = "主栽作物（话术四要件之一，取不着不代填）")
+    private String mainCrop;
+
+    /** 承办岗（话术四要件之一） */
+    @TableField("assignee_post")
+    @ApiModelProperty(value = "承办岗（话术四要件之一）")
+    private String assigneePost;
+
     /** 该发提醒那一一日（落库为 datetime） */
     @TableField("due_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -104,6 +124,38 @@ public class TCtldTaskItem implements Serializable {
 
     public void setItemNo(String itemNo) {
         this.itemNo = itemNo;
+    }
+
+    public String getPlotNo() {
+        return plotNo;
+    }
+
+    public void setPlotNo(String plotNo) {
+        this.plotNo = plotNo;
+    }
+
+    public String getMeasureName() {
+        return measureName;
+    }
+
+    public void setMeasureName(String measureName) {
+        this.measureName = measureName;
+    }
+
+    public String getMainCrop() {
+        return mainCrop;
+    }
+
+    public void setMainCrop(String mainCrop) {
+        this.mainCrop = mainCrop;
+    }
+
+    public String getAssigneePost() {
+        return assigneePost;
+    }
+
+    public void setAssigneePost(String assigneePost) {
+        this.assigneePost = assigneePost;
     }
 
     public Date getDueAt() {
